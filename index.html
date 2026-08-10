@@ -1,8 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="8wS-rQcI_Xb_sT4rJ2i3_l_Q9pXn9" />
 <title>NTT – Sportello Sovranità Digitale</title>
 <style>
 :root {
@@ -143,6 +144,12 @@ footer {
   text-align: center; margin-top: 28px; padding: 16px; font-size: 0.78rem;
   color: #6a7a8a; border-top: 1px solid var(--border);
 }
+.success-msg {
+  color: var(--green);
+  font-weight: bold;
+  margin-top: 10px;
+  display: none;
+}
 </style>
 </head>
 <body>
@@ -174,7 +181,7 @@ footer {
   <p style="color:#8a99ad; font-size:0.88rem; margin-bottom:12px;">Consulta l’indice per capire a chi rivolgerti</p>
   <ul>
     <li><span class="section-name">GDPR / Dati</span><br>Cancellazione dati, spam, telemarketing, dati diffusi</li>
-    <li><span class="section-name">Polizia Postale</span><br>Revenge porn, reati informatici, accessi abusivi</li>
+    <li><span class="section-name">Polizia Postale</span><br>Revenge porn, reati informatici, accessi abusivi, furto progetti e proprietà intellettuale</li>
     <li><span class="section-name">Cyber Security</span><br>Account hackerato, malware, accesso remoto, telemetria</li>
     <li><span class="section-name">Aiuto Legale</span><br>Primo orientamento e gratuito patrocinio</li>
   </ul>
@@ -198,7 +205,7 @@ footer {
       <button class="btn" onclick="setQuick('Voglio cancellare i miei dati (art. 17 GDPR)')">📋 Cancellazione dati (Art. 17)</button>
       <button class="btn" onclick="setQuick('Account hackerato o inaccessibile')">🔐 Account hackerato</button>
       <button class="btn" onclick="setQuick('Spam e telefonate commerciali')">📞 Spam / Telemarketing</button>
-      <button class="btn" onclick="setQuick('Diffusione di dati o foto senza permesso')">⚠️ Diffusione dati</button>
+      <button class="btn" onclick="setQuick('Appropriazione o furto di progetti e idee')">⚠️ Furto progetti / Proprietà intellettuale</button>
     </div>
     <label style="font-size:0.85rem; color:#8a99ad; display:block; margin-bottom:6px;">Descrivi cosa ti è successo:</label>
     <div class="input-row">
@@ -249,7 +256,7 @@ Firma: ____________
       (serve SPID o CIE)<br><br>
       <strong>Emergenza</strong>: 112 / 113
     </div>
-    <p style="margin-top:10px; font-size:0.88rem;">Conserva sempre screenshot, email e date. Sono prove importanti.</p>
+    <p style="margin-top:10px; font-size:0.88rem;">Conserva sempre screenshot, email, documenti di progetto, marcatura temporale e date. Sono prove fondamentali.</p>
   </div>
 
   <!-- CYBER -->
@@ -286,28 +293,28 @@ Firma: ____________
   </div>
 </div>
 
-<!-- POLLICI (Netlify Forms) -->
+<!-- POLLICI -->
 <div class="beta-box">
   <h3 style="color:var(--cyan); margin-bottom:8px;">Versione Beta</h3>
   <p style="font-size:0.9rem;">Se ti è stato utile lascia un voto:</p>
-  <form name="voti-pollici" method="POST" data-netlify="true">
-    <div class="thumbs">
-      <button type="submit" name="voto" value="mi-piace" class="thumb-btn">👍</button>
-      <button type="submit" name="voto" value="non-mi-piace" class="thumb-btn">👎</button>
-    </div>
-  </form>
+  <div class="thumbs">
+    <button type="button" onclick="inviaVoto('👍 Pollice in Su')" class="thumb-btn">👍</button>
+    <button type="button" onclick="inviaVoto('👎 Pollice in Giù')" class="thumb-btn">👎</button>
+  </div>
+  <div id="votoMsg" class="success-msg">Grazie per il tuo voto!</div>
 </div>
 
-<!-- FEEDBACK (Netlify Forms) -->
+<!-- FEEDBACK -->
 <div class="feedback-box">
   <h3 style="color:var(--cyan); margin-bottom:8px;">Lascia un feedback anonimo</h3>
   <p style="font-size:0.88rem; color:#8a99ad; margin-bottom:10px;">
-    Nessun nome obbligatorio. Il messaggio arriverà solo all’autrice.
+    Nessun nome, nessuna email obbligatoria. Il messaggio arriverà solo all'autrice.
   </p>
-  <form name="feedback-anonimo" method="POST" data-netlify="true">
-    <textarea name="messaggio" placeholder="Scrivi qui il tuo feedback o suggerimento..." required></textarea>
-    <button type="submit" class="btn-main">Invia feedback anonimo</button>
+  <form id="formFeedback" onsubmit="inviaFeedback(event)">
+    <textarea id="feedbackTxt" name="messaggio" placeholder="Scrivi qui il tuo feedback o suggerimento..." required></textarea>
+    <button type="submit" class="btn-main" style="margin-top:0;">Invia feedback anonimo</button>
   </form>
+  <div id="feedbackMsg" class="success-msg">Grazie per il tuo feedback anonimo!</div>
 </div>
 
 <footer>
@@ -320,6 +327,8 @@ Firma: ____________
 <button class="float-speak" id="floatSpeak" onclick="toggleSpeak()">🔊</button>
 
 <script>
+const FORMSPREE_URL = "https://formspree.io/f/xrpzpqgr";
+
 function playAvviso() {
   const audio = document.getElementById('avvisoAudio');
   if (audio.paused) { audio.play(); }
@@ -333,49 +342,127 @@ function showSection(id, btn) {
   if (btn) btn.classList.add('active');
   stopSpeak();
 }
+
 function setQuick(text) {
   document.getElementById('problemText').value = text;
   showSection('home', document.querySelector('.nav-tabs button'));
 }
+
 function analyze() {
-  const text = document.getElementById('problemText').value.toLowerCase();
+  const rawText = document.getElementById('problemText').value;
+  const text = rawText.toLowerCase().trim();
   const box = document.getElementById('responseBox');
   box.style.display = 'block';
-  if (!text.trim()) {
-    box.innerText = 'Scrivi prima una descrizione del problema.';
+
+  if (!text) {
+    box.innerText = 'Scrivi o detta prima una descrizione del problema.';
     return;
   }
+
+  // DIZIONARI AMPLIATI DI PAROLE CHIAVE E SINONIMI
+  const kwPolizia = [
+    'foto', 'diffus', 'revenge', 'immag', 'furto', 'progett', 'proprieta', 'proprietá',
+    'industrial', 'idea', 'ideat', 'rubat', 'copiat', 'plag', 'brevett', 'marchio',
+    'ricatto', 'estorsion', 'minacc', 'molest', 'stalk', 'diffam', 'video', 'scatto',
+    'spiat', 'materiale', 'invenzion', 'codice', 'software', 'copyright', 'appropriaz'
+  ];
+
+  const kwCyber = [
+    'telemetr', 'accesso remot', 'malware', 'virus', 'intrusion', 'hacker', 'account',
+    'password', 'profilo', 'entrat', 'bloccato', 'spiat', 'spionaggio', 'trojan',
+    'phishing', 'schermo', 'dispositiv', 'telefono', 'pc', 'computer', 'violat',
+    'rubato l\'accesso', 'hackerat', 'violazion', 'keylogger', 'controllat', 'spia'
+  ];
+
+  const kwGdpr = [
+    'cancell', 'art. 17', 'dati', 'oblio', 'elimin', 'rimuov', 'spam', 'telefonat',
+    'telemarket', 'call center', 'pubblicit', 'consenso', 'opposiz', 'garante',
+    'privacy', 'mail non gradit', 'messagg', 'commercial', 'disturb', 'pubblicita'
+  ];
+
+  const kwLegale = [
+    'avvocat', 'legal', 'denunci', 'risarciment', 'danni', 'patrocinio', 'gratuit',
+    'tribunal', 'giudic', 'causa', 'soldi', 'spese', 'tutel', 'diffida', 'lettera',
+    'risarcire', 'citaz'
+  ];
+
+  const matches = (list) => list.some(k => text.includes(k));
+
   let risposta = '';
-  if (text.includes('telemetr') || text.includes('accesso remoto') || text.includes('malware') || text.includes('virus') || text.includes('intrusione')) {
-    risposta = 'Possibile accesso non autorizzato o malware.\n\n1. Vai in Cyber Security e segui i passi\n2. Conserva le prove\n3. Valuta segnalazione alla Polizia Postale';
-    showSection('cyber', document.querySelectorAll('.nav-tabs button')[3]);
-  } else if (text.includes('cancell') || text.includes('art. 17') || text.includes('dati personali') || text.includes('oblio')) {
-    risposta = 'Caso cancellazione dati (Art. 17 GDPR).\n\n1. Vai in GDPR / Dati\n2. Usa il modello pronto\n3. Invia la richiesta al titolare';
-    showSection('gdpr', document.querySelectorAll('.nav-tabs button')[1]);
-  } else if (text.includes('hacker') || text.includes('account') || text.includes('password') || text.includes('rubat')) {
-    risposta = 'Account compromesso.\n\n1. Vai in Cyber Security\n2. Cambia password e attiva 2FA\n3. Se serve, Polizia Postale';
-    showSection('cyber', document.querySelectorAll('.nav-tabs button')[3]);
-  } else if (text.includes('spam') || text.includes('telefonat') || text.includes('telemarketing')) {
-    risposta = 'Spam / telemarketing.\n\n1. Vai in GDPR / Dati\n2. Puoi opporti (art. 21)\n3. Segnala al Garante Privacy';
-    showSection('gdpr', document.querySelectorAll('.nav-tabs button')[1]);
-  } else if (text.includes('foto') || text.includes('diffusi') || text.includes('revenge') || text.includes('immagine')) {
-    risposta = 'Diffusione non autorizzata.\n\n1. Conserva le prove\n2. Vai in Polizia Postale\n3. Valuta anche il Garante Privacy';
+
+  if (matches(kwPolizia)) {
+    risposta = '🚨 Violazione di proprietà industriale/intellettuale, furto di progetti o diffusione non autorizzata.\n\n1. Conserva subito le prove (screenshot, email, marcatura temporale, URL, codici sorgente).\n2. Vai nella sezione Polizia Postale per preparare la pre-denuncia per reati informatici/appropriazione indebita.\n3. Se riguarda la diffusione impropria di tuoi dati o immagini, valuta anche la segnalazione al Garante Privacy.';
     showSection('polizia', document.querySelectorAll('.nav-tabs button')[2]);
+  } else if (matches(kwCyber)) {
+    risposta = '🛡️ Probabile attacco informatico, account compromesso o intrusione nel dispositivo.\n\n1. Vai nella sezione Cyber Security e segui i passi di messa in sicurezza immediata.\n2. Disconnetti tutti i dispositivi sospetti e cambia password/credenziali attivando il 2FA.\n3. Se vi è stato un accesso abusivo con furto o danni, sporgi denuncia alla Polizia Postale.';
+    showSection('cyber', document.querySelectorAll('.nav-tabs button')[3]);
+  } else if (matches(kwGdpr)) {
+    risposta = '📜 Violazione della privacy, trattamento illecito dei dati personali o marketing aggressivo.\n\n1. Vai nella sezione GDPR / Dati.\n2. Scarica e compila il modello pronto per l\'Art. 17 GDPR (Diritto alla cancellazione / Oblio).\n3. Invia la richiesta e, se non ricevi riscontro entro 30 giorni, sporgi reclamo al Garante Privacy.';
+    showSection('gdpr', document.querySelectorAll('.nav-tabs button')[1]);
+  } else if (matches(kwLegale)) {
+    risposta = '⚖️ Richiesta di tutela legale o risarcimento danni.\n\n1. Vai nella sezione Aiuto Legale.\n2. Verifica se hai i requisiti per il Gratuito Patrocinio (se il tuo reddito annuo non supera € 13.659,64 dello Stato).\n3. Valuta un primo orientamento legale tramite i canali dedicati.';
+    showSection('legale', document.querySelectorAll('.nav-tabs button')[4]);
   } else {
-    risposta = 'Consulta l’indice in alto oppure descrivi meglio il problema.';
+    risposta = '🔍 Non sono riuscito ad associare automaticamente il tuo testo a una categoria specifica.\n\nConsulta l’indice in alto oppure descrivi con qualche dettaglio in più il problema (es. "mi hanno rubato l\'idea", "mi chiamano i call center", "non riesco ad entrare nel mio account").';
   }
+
   box.innerText = risposta + '\n\n---\nVersione Beta – Solo orientamento informativo.';
 }
+
 function copyTemplate() {
   navigator.clipboard.writeText(document.getElementById('template17').innerText)
     .then(() => alert('Testo copiato!'));
 }
+
 function downloadTemplate() {
   const blob = new Blob([document.getElementById('template17').innerText], {type: 'text/plain'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'Art17_GDPR.txt';
   a.click();
+}
+
+async function inviaVoto(tipo) {
+  const msgBox = document.getElementById('votoMsg');
+  msgBox.style.display = 'block';
+  msgBox.innerText = "Invio in corso...";
+
+  try {
+    await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ valutazione_beta: tipo })
+    });
+    msgBox.innerText = "Grazie per il tuo voto!";
+  } catch (e) {
+    msgBox.innerText = "Grazie per il tuo voto!";
+  }
+}
+
+async function inviaFeedback(event) {
+  event.preventDefault();
+  const testo = document.getElementById('feedbackTxt').value;
+  const msgBox = document.getElementById('feedbackMsg');
+  
+  msgBox.style.display = 'block';
+  msgBox.innerText = "Invio in corso...";
+
+  try {
+    const response = await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ messaggio_feedback: testo })
+    });
+
+    if (response.ok) {
+      document.getElementById('formFeedback').style.display = 'none';
+      msgBox.innerText = "Grazie per il tuo feedback anonimo!";
+    } else {
+      msgBox.innerText = "Si è verificato un errore nell'invio.";
+    }
+  } catch (e) {
+    msgBox.innerText = "Errore di connessione durante l'invio.";
+  }
 }
 
 let speaking = false, paused = false;
@@ -386,6 +473,7 @@ function toggleSpeak() {
   else if (speaking && paused) { speechSynthesis.resume(); paused = false; btn.textContent = '⏸️'; }
   else { startSpeak(); }
 }
+
 function startSpeak() {
   stopSpeak();
   const response = document.getElementById('responseBox');
@@ -399,6 +487,7 @@ function startSpeak() {
   speaking = true; paused = false;
   document.getElementById('floatSpeak').textContent = '⏸️';
 }
+
 function stopSpeak() {
   speechSynthesis.cancel();
   speaking = false; paused = false;
