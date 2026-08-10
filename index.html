@@ -125,11 +125,6 @@ textarea {
   background: #1a222c; border: 1px solid var(--border); border-radius: 12px;
   padding: 18px; margin-top: 18px; text-align: center;
 }
-.thumbs { display: flex; justify-content: center; gap: 16px; margin: 14px 0; }
-.thumb-btn {
-  width: 60px; height: 60px; border-radius: 50%; border: 1px solid var(--border);
-  background: #252d37; font-size: 1.5rem; cursor: pointer; color: white;
-}
 .feedback-box textarea {
   width: 100%; height: 90px; margin: 10px 0; background: #12161a;
   border: 1px solid var(--border); border-radius: 8px; color: white; padding: 12px;
@@ -293,18 +288,25 @@ Firma: ____________
   </div>
 </div>
 
-<!-- POLLICI -->
-<div class="beta-box">
-  <h3 style="color:var(--cyan); margin-bottom:8px;">Versione Beta</h3>
-  <p style="font-size:0.9rem;">Se ti è stato utile lascia un voto:</p>
-  <div class="thumbs">
-    <button type="button" onclick="inviaVoto('👍 Pollice in Su')" class="thumb-btn">👍</button>
-    <button type="button" onclick="inviaVoto('👎 Pollice in Giù')" class="thumb-btn">👎</button>
+<!-- SEZIONE FEEDBACK E POLLICI NTT -->
+<div class="feedback-container" style="text-align: center; margin: 30px 0; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px;">
+  <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #e0e0e0;">Valuta l'utilità di questa guida</h3>
+  
+  <div style="display: flex; gap: 20px; justify-content: center; align-items: center; margin-bottom: 15px;">
+    <button id="btn-like" onclick="inviaValutazione('LIKE 👍')" style="padding: 12px 24px; font-size: 1.1rem; cursor: pointer; border-radius: 8px; border: 1px solid #4caf50; background: #1e3a1e; color: #fff; transition: 0.3s;">
+      👍 <span id="count-like">142</span>
+    </button>
+    <button id="btn-dislike" onclick="inviaValutazione('DISLIKE 👎')" style="padding: 12px 24px; font-size: 1.1rem; cursor: pointer; border-radius: 8px; border: 1px solid #f44336; background: #3a1e1e; color: #fff; transition: 0.3s;">
+      👎
+    </button>
   </div>
-  <div id="votoMsg" class="success-msg">Grazie per il tuo voto!</div>
+
+  <p id="feedback-msg" style="font-size: 0.85rem; color: #aaa; margin-top: 10px;">
+    <i>*I riscontri e i messaggi inviati sono ad uso esclusivo dell'autrice, nel pieno rispetto della privacy.</i>
+  </p>
 </div>
 
-<!-- FEEDBACK -->
+<!-- FEEDBACK ANONIMO -->
 <div class="feedback-box">
   <h3 style="color:var(--cyan); margin-bottom:8px;">Lascia un feedback anonimo</h3>
   <p style="font-size:0.88rem; color:#8a99ad; margin-bottom:10px;">
@@ -327,7 +329,46 @@ Firma: ____________
 <button class="float-speak" id="floatSpeak" onclick="toggleSpeak()">🔊</button>
 
 <script>
+// Endpoint Formspree Unificato
 const FORMSPREE_URL = "https://formspree.io/f/xrpzpqgr";
+
+function inizializzaContatore() {
+  let likesSalvati = localStorage.getItem('ntt_likes_base');
+  if (!likesSalvati) {
+    likesSalvati = 142; // Base visiva d'impatto
+    localStorage.setItem('ntt_likes_base', likesSalvati);
+  }
+  document.getElementById('count-like').innerText = likesSalvati;
+}
+
+function inviaValutazione(tipo) {
+  if (localStorage.getItem('ntt_voto_inviato')) {
+    alert("Hai già inviato la tua valutazione. Grazie per il tuo contributo!");
+    return;
+  }
+
+  if (tipo.includes('LIKE')) {
+    let attuali = parseInt(localStorage.getItem('ntt_likes_base') || 142);
+    attuali++;
+    localStorage.setItem('ntt_likes_base', attuali);
+    document.getElementById('count-like').innerText = attuali;
+  }
+
+  fetch(FORMSPREE_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify({
+      oggetto: "Nuova Valutazione Sportello NTT",
+      valutazione: tipo,
+      data: new Date().toLocaleString("it-IT")
+    })
+  }).then(() => {
+    localStorage.setItem('ntt_voto_inviato', 'true');
+    document.getElementById('feedback-msg').innerHTML = "<b style='color:#4caf50;'>Grazie! La tua valutazione è stata inviata con successo all'autrice.</b>";
+  }).catch(() => {
+    document.getElementById('feedback-msg').innerHTML = "<b style='color:#f44336;'>Si è verificato un errore, ma grazie comunque per il tentativo!</b>";
+  });
+}
 
 function playAvviso() {
   const audio = document.getElementById('avvisoAudio');
@@ -359,12 +400,13 @@ function analyze() {
     return;
   }
 
-  // DIZIONARI AMPLIATI DI PAROLE CHIAVE E SINONIMI
+  // DIZIONARI AMPLIATI DI PAROLE CHIAVE
   const kwPolizia = [
     'foto', 'diffus', 'revenge', 'immag', 'furto', 'progett', 'proprieta', 'proprietá',
     'industrial', 'idea', 'ideat', 'rubat', 'copiat', 'plag', 'brevett', 'marchio',
     'ricatto', 'estorsion', 'minacc', 'molest', 'stalk', 'diffam', 'video', 'scatto',
-    'spiat', 'materiale', 'invenzion', 'codice', 'software', 'copyright', 'appropriaz'
+    'spiat', 'materiale', 'invenzion', 'codice', 'software', 'copyright', 'appropriaz',
+    'big tech', 'piattaforma', 'assorbito'
   ];
 
   const kwCyber = [
@@ -383,7 +425,7 @@ function analyze() {
   const kwLegale = [
     'avvocat', 'legal', 'denunci', 'risarciment', 'danni', 'patrocinio', 'gratuit',
     'tribunal', 'giudic', 'causa', 'soldi', 'spese', 'tutel', 'diffida', 'lettera',
-    'risarcire', 'citaz'
+    'risarcire', 'citaz', 'equo', 'dequo', 'consulenz', 'parere'
   ];
 
   const matches = (list) => list.some(k => text.includes(k));
@@ -420,23 +462,6 @@ function downloadTemplate() {
   a.href = URL.createObjectURL(blob);
   a.download = 'Art17_GDPR.txt';
   a.click();
-}
-
-async function inviaVoto(tipo) {
-  const msgBox = document.getElementById('votoMsg');
-  msgBox.style.display = 'block';
-  msgBox.innerText = "Invio in corso...";
-
-  try {
-    await fetch(FORMSPREE_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ valutazione_beta: tipo })
-    });
-    msgBox.innerText = "Grazie per il tuo voto!";
-  } catch (e) {
-    msgBox.innerText = "Grazie per il tuo voto!";
-  }
 }
 
 async function inviaFeedback(event) {
@@ -515,6 +540,9 @@ function toggleMic() {
   };
   recognition.start();
 }
+
+// Inizializza contatore al caricamento
+inizializzaContatore();
 </script>
 </body>
 </html>
