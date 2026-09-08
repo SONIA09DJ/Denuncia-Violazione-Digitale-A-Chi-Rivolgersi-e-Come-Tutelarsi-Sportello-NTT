@@ -4,17 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="hO4BFi-pPEm_cqqg3B-EpfxRj7jz7Ux3w22ksC0kXh4" />
+<meta name="description" content="Sportello NTT per la Sovranità Digitale e tutela della privacy. Guida all'esercizio dei diritti GDPR, segnalazioni e orientamento informativo verso le autorità competenti.">
+<link rel="canonical" href="https://sonia09dj.github.io/Denuncia-Violazione-Digitale-A-Chi-Rivolgersi-e-Come-Tutelarsi-Sportello-NTT/" />
 <title>NTT – Sportello Sovranità Digitale</title>
 <style>
 :root {
-  --bg: #12161a;
-  --card: #1e242b;
-  --text: #e0e6ed;
-  --cyan: #00d2ff;
-  --green: #a8e063;
-  --purple: #9b51e0;
-  --border: #2c3540;
-  --warning: #ff6b6b;
+  --bg: #111518;
+  --card: #1b2127;
+  --card-inner: #161b20;
+  --text: #e1e7ed;
+  --green-ntt: #2ea043;
+  --green-light: #56d364;
+  --gold-ntt: #d4af37;
+  --gold-subtle: rgba(212, 175, 55, 0.3);
+  --border: #2d353e;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
 body {
@@ -26,121 +29,143 @@ body {
   line-height: 1.5;
 }
 .container { max-width: 820px; margin: 0 auto; }
-header { text-align: center; margin-bottom: 18px; }
-.logo-img { max-width: 200px; width: 100%; margin-bottom: 8px; }
-.logo-sub { font-size: 0.85rem; color: #8a99ad; letter-spacing: 2px; }
+header { text-align: center; margin-bottom: 20px; }
+.logo-img { max-width: 210px; width: 100%; margin-bottom: 8px; }
+.logo-sub { font-size: 0.85rem; color: #8b9bb0; letter-spacing: 2px; font-weight: 600; } 
+
+/* DISCLAIMER RILASSANTE - BORDO ORO TENUE, SFONDO SCURO E TESTO BIANCO */
 .disclaimer {
-  background: #2a1a1a;
-  border: 1px solid var(--warning);
+  background: var(--card-inner);
+  border: 1px solid var(--gold-ntt);
+  box-shadow: 0 0 10px var(--gold-subtle);
   border-radius: 10px;
-  padding: 14px 16px;
-  margin-bottom: 14px;
+  padding: 18px;
+  margin-bottom: 20px;
   font-size: 0.9rem;
+  color: #e1e7ed;
 }
-.disclaimer strong { color: var(--warning); }
+.disclaimer strong { color: #ffffff; font-weight: 700; } 
+
+/* INDICE CROMATICO VERDE/ORO */
 .index-box {
-  background: #1a222c;
+  background: var(--card-inner);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 18px;
+  padding: 18px;
+  margin-bottom: 20px;
   font-size: 0.9rem;
 }
-.index-box h3 { color: var(--cyan); font-size: 1.1rem; margin-bottom: 6px; }
-.index-box .section-name { color: var(--cyan); font-weight: 700; }
+.index-box h3 { color: var(--gold-ntt); font-size: 1.1rem; margin-bottom: 6px; }
+.index-box .section-name { color: var(--green-light); font-weight: 700; }
 .index-box li { margin-bottom: 10px; list-style: none; }
+
 .badge {
   display: inline-block;
-  background: rgba(0,210,255,0.12);
-  color: var(--cyan);
-  border: 1px solid var(--cyan);
-  padding: 3px 10px;
+  background: rgba(86, 211, 100, 0.1);
+  color: var(--green-light);
+  border: 1px solid var(--green-ntt);
+  padding: 4px 12px;
   border-radius: 20px;
-  font-size: 0.72rem;
-  margin-bottom: 12px;
+  font-size: 0.75rem;
+  margin-bottom: 14px;
 }
 .card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 18px;
+  padding: 22px;
+  margin-bottom: 20px;
 }
-.nav-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.nav-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
 .nav-tabs button {
   flex: 1; min-width: 100px; padding: 10px;
-  background: #252d37; border: 1px solid var(--border);
-  color: #c5d1e0; border-radius: 8px; cursor: pointer; font-size: 0.82rem;
+  background: #222a33; border: 1px solid var(--border);
+  color: #c5d1e0; border-radius: 8px; cursor: pointer; font-size: 0.85rem;
+  transition: all 0.2s ease;
 }
 .nav-tabs button.active {
-  border-color: var(--cyan); color: var(--cyan);
-  background: rgba(0,210,255,0.1);
+  border-color: var(--green-light); color: var(--green-light);
+  background: rgba(46, 160, 67, 0.15); font-weight: 600;
 }
 .section { display: none; }
 .section.active { display: block; }
+
 .quick-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px;
 }
 @media (max-width: 500px) { .quick-grid { grid-template-columns: 1fr; } }
+
 .btn {
-  background: #252d37; color: #c5d1e0; border: 1px solid var(--border);
+  background: #222a33; color: #d0dbe5; border: 1px solid var(--border);
   padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; font-size: 0.88rem;
+  transition: border-color 0.2s;
 }
-.btn:hover { border-color: var(--cyan); }
-.input-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.btn:hover { border-color: var(--green-light); }
+
+.input-row { display: flex; gap: 8px; margin-bottom: 14px; }
 textarea {
-  flex: 1; height: 90px; background: #12161a; border: 1px solid var(--border);
+  flex: 1; height: 95px; background: var(--bg); border: 1px solid var(--border);
   border-radius: 8px; color: white; padding: 12px; font-size: 0.95rem; resize: vertical;
 }
 .mic-btn {
   width: 48px; height: 48px; border-radius: 8px; border: 1px solid var(--border);
-  background: #252d37; color: white; font-size: 1.3rem; cursor: pointer;
+  background: #222a33; color: white; font-size: 1.3rem; cursor: pointer;
 }
-.mic-btn.listening { background: #5c1a1a; border-color: var(--warning); }
+.mic-btn.listening { background: #5c1a1a; border-color: #e55353; }
+
+/* PULSANTE PRINCIPALE VERDE SMERALDO RELAX */
 .btn-main {
-  width: 100%; background: linear-gradient(135deg, var(--cyan), var(--purple));
+  width: 100%;
+  background: linear-gradient(135deg, #2ea043, #1f6feb);
   color: white; border: none; padding: 14px; border-radius: 8px;
   font-weight: 700; font-size: 1rem; cursor: pointer;
+  box-shadow: 0 4px 12px rgba(46, 160, 67, 0.25);
+  transition: transform 0.1s;
 }
+.btn-main:active { transform: scale(0.99); }
+
 .response {
-  display: none; margin-top: 18px; padding: 16px; background: #12161a;
-  border-left: 4px solid var(--green); border-radius: 6px;
+  display: none; margin-top: 18px; padding: 16px; background: var(--bg);
+  border-left: 4px solid var(--green-light); border-radius: 6px;
   white-space: pre-line; font-size: 0.92rem;
 }
 .link-box {
-  background: #161b22; border-radius: 8px; padding: 12px; margin: 10px 0; font-size: 0.88rem;
+  background: var(--card-inner); border-radius: 8px; padding: 14px; margin: 12px 0; font-size: 0.88rem;
+  border: 1px solid var(--border);
 }
-.link-box a { color: var(--cyan); }
+.link-box a { color: var(--green-light); }
+
 .template-box {
-  background: #0d1117; border: 1px solid var(--border); border-radius: 8px;
+  background: #0d1116; border: 1px solid var(--border); border-radius: 8px;
   padding: 14px; font-family: monospace; font-size: 0.82rem;
   white-space: pre-wrap; max-height: 280px; overflow-y: auto; margin: 10px 0;
 }
 .btn-small {
-  background: #252d37; color: var(--cyan); border: 1px solid var(--cyan);
+  background: #222a33; color: var(--green-light); border: 1px solid var(--green-ntt);
   padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 0.85rem;
   margin-right: 8px; margin-top: 8px;
 }
-.beta-box, .feedback-box {
-  background: #1a222c; border: 1px solid var(--border); border-radius: 12px;
-  padding: 18px; margin-top: 18px; text-align: center;
+
+.feedback-box, .video-box {
+  background: var(--card-inner); border: 1px solid var(--border); border-radius: 12px;
+  padding: 20px; margin-top: 20px; text-align: center;
 }
 .feedback-box textarea {
-  width: 100%; height: 90px; margin: 10px 0; background: #12161a;
+  width: 100%; height: 90px; margin: 10px 0; background: var(--bg);
   border: 1px solid var(--border); border-radius: 8px; color: white; padding: 12px;
 }
 .float-speak {
   position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px;
-  border-radius: 50%; background: linear-gradient(135deg, var(--cyan), var(--purple));
+  border-radius: 50%; background: linear-gradient(135deg, #2ea043, #1f6feb);
   color: white; border: none; font-size: 1.4rem; cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4); z-index: 999;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5); z-index: 999;
 }
 footer {
-  text-align: center; margin-top: 28px; padding: 16px; font-size: 0.78rem;
+  text-align: center; margin-top: 30px; padding: 16px; font-size: 0.78rem;
   color: #6a7a8a; border-top: 1px solid var(--border);
 }
 .success-msg {
-  color: var(--green);
+  color: var(--green-light);
   font-weight: bold;
   margin-top: 10px;
   display: none;
@@ -148,43 +173,41 @@ footer {
 </style>
 </head>
 <body>
-<div class="container">
+<div class="container"> 
 
 <header>
   <img src="LOGO_NTT.jpg" alt="Logo NTT" class="logo-img">
   <div class="logo-sub">SPORTELLO SOVRANITÀ DIGITALE</div>
-</header>
+</header> 
 
-<!-- DISCLAIMER -->
 <div class="disclaimer">
-  <strong>🚨 AVVISO IMPORTANTE – ESCLUSIONE DI RESPONSABILITÀ 🚨</strong><br><br>
-  Questo sportello offre esclusivamente un servizio gratuito di orientamento informativo generale.<br><br>
-  È un progetto in fase di sviluppo (versione Beta), ideato da <strong>Sonia Di Somma</strong> a seguito di un’esperienza personale diretta, con l’unico fine di aiutare chi si trova in difficoltà, senza alcun scopo di lucro.<br><br>
-  I contenuti, i testi, i modelli e i link forniti da questo sito (<strong>New Tree Technology – NTT / Sportello Sovranità Digitale</strong>) non costituiscono consulenza legale, tecnica o specialistica e non sostituiscono l’assistenza di un avvocato, delle Forze dell’Ordine o del Garante per la Protezione dei Dati Personali.<br><br>
-  <strong>Sonia Di Somma</strong>, <strong>New Tree Technology</strong> e la gestione dello sportello <strong>non assumono alcuna responsabilità</strong> per errori di copia, interpretazione, indirizzi errati, malfunzionamenti del sito o per le azioni intraprese dagli utenti. È esclusa qualsiasi forma di risarcimento, indennizzo o copertura assicurativa.<br><br>
-  Questo sportello è solo uno strumento di orientamento per favorire la sovranità sui propri dati.
-</div>
+  <strong>🚨 AVVISO IMPORTANTE – ORIENTAMENTO INFORMATIVO 🚨</strong><br><br>
+  Questo sportello offre esclusivamente un servizio gratuito di orientamento informativo e di indirizzamento verso le autorità competenti.<br><br>
+  È un progetto in fase di sviluppo (versione Beta), ideato dall'autrice <strong>Sonia Di Somma</strong> a seguito di un’esperienza personale diretta, con l’unico fine di aiutare chi si trova in difficoltà, senza alcun scopo di lucro.<br><br>
+  <strong>New Tree Technology (NTT) e questo sportello non forniscono software di protezione o difesa informatica attiva</strong>, ma orientano l'utente su come e dove denunciare o tutelare i propri diritti presso gli enti preposti (Garante Privacy, Polizia Postale, ACN).<br><br>
+  I contenuti, i testi, i modelli e i link forniti non costituiscono consulenza legale o tecnica specialistica. L'<strong>autrice</strong> e la gestione dello sportello <strong>non assumono alcuna responsabilità</strong> per errori, interpretazioni o azioni intraprese dagli utenti.<br><br>
+  Questo sportello è uno strumento di orientamento civico per la sovranità sui propri dati.
+</div> 
 
-<button class="btn-small" onclick="playAvviso()" style="margin-bottom:16px;">
+<button class="btn-small" onclick="playAvviso()" style="margin-bottom:18px;">
   🔊 Ascolta l’avviso importante
 </button>
-<audio id="avvisoAudio" src="Voce 004.m4a"></audio>
+<audio id="avvisoAudio" src="Voce 004.m4a"></audio> 
 
-<!-- INDICE -->
 <div class="index-box">
-  <h3>Indice</h3>
-  <p style="color:#8a99ad; font-size:0.88rem; margin-bottom:12px;">Consulta l’indice per capire a chi rivolgerti</p>
+  <h3>Indice della Guida</h3>
+  <p style="color:#8b9bb0; font-size:0.88rem; margin-bottom:12px;">Consulta l’indice per capire a chi rivolgerti</p>
   <ul>
-    <li><span class="section-name">GDPR / Dati</span><br>Cancellazione dati, spam, telemarketing, dati diffusi</li>
+    <li><span class="section-name">GDPR / Dati</span><br>Cancellazione dati, spam, telemarketing, reclami al Garante Privacy</li>
     <li><span class="section-name">Polizia Postale</span><br>Revenge porn, reati informatici, accessi abusivi, furto progetti e proprietà intellettuale</li>
-    <li><span class="section-name">Cyber Security</span><br>Account hackerato, malware, accesso remoto, telemetria</li>
-    <li><span class="section-name">Aiuto Legale</span><br>Primo orientamento e gratuito patrocinio</li>
+    <li><span class="section-name">Cyber Security</span><br>Account hackerato, compromissioni, segnalazione ad ACN</li>
+    <li><span class="section-name">Aiuto Legale</span><br>Primo orientamento e gratuito patrocinio (Progetto Beta in attesa di affiliazioni)</li>
   </ul>
-</div>
+</div> 
 
 <div class="card">
   <span class="badge">ZERO RACCOLTA DATI • VERSIONE BETA</span>
-  <h2 style="margin-bottom:14px;">Come possiamo aiutarti?</h2>
+  <h2 style="margin-bottom:16px;">Come possiamo aiutarti?</h2> 
 
   <div class="nav-tabs">
     <button class="active" onclick="showSection('home', this)">Home</button>
@@ -192,42 +215,40 @@ footer {
     <button onclick="showSection('polizia', this)">Polizia Postale</button>
     <button onclick="showSection('cyber', this)">Cyber Security</button>
     <button onclick="showSection('legale', this)">Aiuto Legale</button>
-  </div>
+  </div> 
 
-  <!-- HOME -->
   <div id="home" class="section active">
     <div class="quick-grid">
       <button class="btn" onclick="setQuick('Voglio cancellare i miei dati (art. 17 GDPR)')">📋 Cancellazione dati (Art. 17)</button>
       <button class="btn" onclick="setQuick('Account hackerato o inaccessibile')">🔐 Account hackerato</button>
       <button class="btn" onclick="setQuick('Spam e telefonate commerciali')">📞 Spam / Telemarketing</button>
-      <button class="btn" onclick="setQuick('Appropriazione o furto di progetti e idee')">⚠️ Furto progetti / Proprietà intellettuale</button>
+      <button class="btn" onclick="setQuick('Appropriazione o furto di progetti, idee e proprietà intellettuale')">⚠️ Furto progetti / Proprietà intellettuale</button>
     </div>
-    <label style="font-size:0.85rem; color:#8a99ad; display:block; margin-bottom:6px;">Descrivi cosa ti è successo:</label>
+    <label style="font-size:0.85rem; color:#8b9bb0; display:block; margin-bottom:6px;">Descrivi cosa ti è successo:</label>
     <div class="input-row">
       <textarea id="problemText" placeholder="Scrivi qui oppure usa il microfono..."></textarea>
       <button class="mic-btn" id="micBtn" onclick="toggleMic()" title="Dettatura">🎤</button>
     </div>
-    <button class="btn-main" onclick="analyze()">ANALIZZA E MOSTRA SOLUZIONE</button>
+    <button class="btn-main" onclick="analyze()">ANALIZZA E INDIRIZZA</button>
     <div class="response" id="responseBox"></div>
-  </div>
+  </div> 
 
-  <!-- GDPR -->
   <div id="gdpr" class="section">
-    <h2>GDPR – Diritti sui tuoi dati</h2>
-    <p style="margin-bottom:12px; font-size:0.9rem;">Puoi chiedere la cancellazione dei tuoi dati (Art. 17 GDPR).</p>
+    <h2>GDPR – Diritti e Reclami</h2>
+    <p style="margin-bottom:12px; font-size:0.9rem;">Puoi esercitare il diritto di cancellazione (Art. 17 GDPR) o rivolgerti al Garante.</p>
     <div class="link-box">
-      <strong>Garante Privacy</strong><br>
+      <strong>Garante per la Protezione dei Dati Personali</strong><br>
       Piazza Venezia 11 – 00187 Roma<br>
       Email: protocollo@gpdp.it<br>
       PEC: protocollo@pec.gpdp.it<br>
-      Sito: <a href="https://www.garanteprivacy.it" target="_blank">garanteprivacy.it</a>
+      Sito ufficiale: <a href="https://www.garanteprivacy.it" target="_blank">garanteprivacy.it</a>
     </div>
-    <h3 style="color:var(--green); margin:14px 0 8px;">Modello Art. 17</h3>
+    <h3 style="color:var(--green-light); margin:14px 0 8px;">Modello Art. 17</h3>
     <div class="template-box" id="template17">
-Spett.le [NOME AZIENDA]
+Spett.le [ NOME AZIENDA ]
 Oggetto: Richiesta di cancellazione dati – Art. 17 GDPR
-Io sottoscritto/a [NOME COGNOME], nato/a a [LUOGO] il [DATA],
-residente in [INDIRIZZO], CF [CODICE FISCALE], email [EMAIL],
+Io sottoscritto/a [ NOME COGNOME ], nato/a a [ LUOGO ] il [ DATA ],
+residente in [ INDIRIZZO ], C.F. [ CODICE FISCALE ], email [ EMAIL ],
 chiedo la cancellazione di tutti i miei dati personali ai sensi dell’art. 17 GDPR.
 Motivo:
 [ ] dati non più necessari
@@ -235,81 +256,71 @@ Motivo:
 [ ] opposizione al marketing
 [ ] altro: ___________
 Chiedo conferma scritta entro 30 giorni.
-Luogo e data: ____________
+Luogo e data: / /
 Firma: ____________
     </div>
     <button class="btn-small" onclick="copyTemplate()">Copia testo</button>
     <button class="btn-small" onclick="downloadTemplate()">Scarica .txt</button>
-  </div>
+  </div> 
 
-  <!-- POLIZIA -->
   <div id="polizia" class="section">
-    <h2>Polizia Postale</h2>
+    <h2>Polizia Postale e delle Comunicazioni</h2>
     <div class="link-box">
       <strong>Sito ufficiale</strong>: <a href="https://www.commissariatodips.it" target="_blank">commissariatodips.it</a><br><br>
       <strong>Pre-denuncia online</strong>: <a href="https://denunceonline.poliziadistato.it" target="_blank">denunceonline.poliziadistato.it</a><br>
-      (serve SPID o CIE)<br><br>
+      (accesso tramite SPID o CIE)<br><br>
       <strong>Emergenza</strong>: 112 / 113
     </div>
-    <p style="margin-top:10px; font-size:0.88rem;">Conserva sempre screenshot, email, documenti di progetto, marcatura temporale e date. Sono prove fondamentali.</p>
-  </div>
+    <p style="margin-top:10px; font-size:0.88rem;">Conserva sempre screenshot, email, documenti di progetto, marcature temporali e date. Sono prove determinanti per la denuncia.</p>
+  </div> 
 
-  <!-- CYBER -->
   <div id="cyber" class="section">
-    <h2>Cyber Security – Primi passi</h2>
+    <h2>Cyber Security – Segnalazioni</h2>
     <ol style="padding-left:18px; font-size:0.9rem;">
-      <li style="margin-bottom:8px;">Cambia subito le password e attiva il 2FA</li>
-      <li style="margin-bottom:8px;">Controlla le sessioni attive e disconnetti i dispositivi sconosciuti</li>
-      <li style="margin-bottom:8px;">Controlla le regole di inoltro dell’email</li>
-      <li style="margin-bottom:8px;">Segnala alla piattaforma e, se serve, alla Polizia Postale</li>
+      <li style="margin-bottom:8px;">Cambia subito le password e attiva l'autenticazione a due fattori (2FA)</li>
+      <li style="margin-bottom:8px;">Controlla le sessioni attive e scollega i dispositivi non autorizzati</li>
+      <li style="margin-bottom:8px;">Verifica le regole di inoltro email</li>
+      <li style="margin-bottom:8px;">Segnala l'incidente informatico agli enti preposti</li>
     </ol>
     <div class="link-box" style="margin-top:12px;">
-      Agenzia per la Cybersicurezza Nazionale:<br>
+      Agenzia per la Cybersicurezza Nazionale (ACN):<br>
       <a href="https://www.acn.gov.it" target="_blank">acn.gov.it</a>
     </div>
-  </div>
+  </div> 
 
-  <!-- LEGALE -->
   <div id="legale" class="section">
     <h2>Aiuto Legale</h2>
-    <p style="font-size:0.9rem; margin-bottom:12px;">
-      Questo sportello è in fase Beta: <strong>al momento non ci sono studi legali affiliati</strong>.
-    </p>
-    <p style="font-size:0.9rem; margin-bottom:10px;">
-      <strong>Primo orientamento:</strong> in futuro gli avvocati potranno offrire un primo colloquio gratuito (anche in videochiamata) per valutare il caso. Poi l’utente decide se conferire il mandato direttamente al legale.
-    </p>
-    <p style="font-size:0.9rem;">
-      <strong>Patrocinio a spese dello Stato:</strong> se il reddito annuo non supera € 13.659,64 puoi chiederlo al Consiglio dell’Ordine degli Avvocati della tua città.
-    </p>
-    <p style="font-size:0.9rem; margin-top:10px;">
-      Per un primo orientamento puoi usare piattaforme esterne, ad esempio:<br>
-      <a href="https://www.dequo.it" target="_blank">dequo.it</a>
+    <div class="link-box" style="border-left: 3px solid var(--gold-ntt);">
+      <strong>PROGETTO BETA – SEZIONE IN AGGIORNAMENTO</strong><br><br>
+      Al momento questo sportello <strong>non è associato ad alcun studio legale</strong>. Questa sezione è predisposta per futuri orientamenti e convenzioni con professionisti abilitati.<br><br>
+      Nel frattempo, ricorda che puoi verificare il diritto al <strong>Gratuito Patrocinio</strong> a spese dello Stato presso il Consiglio dell’Ordine degli Avvocati della tua città (limite di reddito applicabile).
+    </div>
+    <p style="font-size:0.88rem; margin-top:10px;">
+      Per un primo orientamento informativo esterno puoi consultare piattaforme dedicate come <a href="https://www.dequo.it" target="_blank">dequo.it</a>.
     </p>
   </div>
-</div>
+</div> 
 
-<!-- SEZIONE FEEDBACK E POLLICI NTT -->
-<div class="feedback-container" style="text-align: center; margin: 30px 0; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px;">
-  <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #e0e0e0;">Valuta l'utilità di questa guida</h3>
+<div class="feedback-container" style="text-align: center; margin: 28px 0; padding: 20px; background: var(--card-inner); border-radius: 12px; border: 1px solid var(--border);">
+  <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #e1e7ed;">Valuta l'utilità di questa guida</h3>
   
   <div style="display: flex; gap: 20px; justify-content: center; align-items: center; margin-bottom: 15px;">
-    <button id="btn-like" onclick="inviaValutazione('LIKE 👍')" style="padding: 12px 24px; font-size: 1.1rem; cursor: pointer; border-radius: 8px; border: 1px solid #4caf50; background: #1e3a1e; color: #fff; transition: 0.3s;">
-      👍 <span id="count-like">142</span>
+    <button id="btn-like" onclick="inviaValutazione('LIKE 👍')" style="padding: 12px 24px; font-size: 1.1rem; cursor: pointer; border-radius: 8px; border: 1px solid var(--green-ntt); background: #162b1a; color: #fff; transition: 0.3s;">
+      👍 <span id="count-like">...</span>
     </button>
-    <button id="btn-dislike" onclick="inviaValutazione('DISLIKE 👎')" style="padding: 12px 24px; font-size: 1.1rem; cursor: pointer; border-radius: 8px; border: 1px solid #f44336; background: #3a1e1e; color: #fff; transition: 0.3s;">
+    <button id="btn-dislike" onclick="inviaValutazione('DISLIKE 👎')" style="padding: 12px 24px; font-size: 1.1rem; cursor: pointer; border-radius: 8px; border: 1px solid var(--border); background: #222a33; color: #fff; transition: 0.3s;">
       👎
     </button>
-  </div>
+  </div> 
 
-  <p id="feedback-msg" style="font-size: 0.85rem; color: #aaa; margin-top: 10px;">
+  <p id="feedback-msg" style="font-size: 0.85rem; color: #8b9bb0; margin-top: 10px;">
     <i>*I riscontri e i messaggi inviati sono ad uso esclusivo dell'autrice, nel pieno rispetto della privacy.</i>
   </p>
-</div>
+</div> 
 
-<!-- FEEDBACK ANONIMO -->
 <div class="feedback-box">
-  <h3 style="color:var(--cyan); margin-bottom:8px;">Lascia un feedback anonimo</h3>
-  <p style="font-size:0.88rem; color:#8a99ad; margin-bottom:10px;">
+  <h3 style="color:var(--green-light); margin-bottom:8px;">Lascia un feedback anonimo</h3>
+  <p style="font-size:0.88rem; color:#8b9bb0; margin-bottom:10px;">
     Nessun nome, nessuna email obbligatoria. Il messaggio arriverà solo all'autrice.
   </p>
   <form id="formFeedback" onsubmit="inviaFeedback(event)">
@@ -317,64 +328,91 @@ Firma: ____________
     <button type="submit" class="btn-main" style="margin-top:0;">Invia feedback anonimo</button>
   </form>
   <div id="feedbackMsg" class="success-msg">Grazie per il tuo feedback anonimo!</div>
+</div> 
+
+<div class="video-box">
+  <h3 style="color: var(--green-light); margin-bottom: 8px;">Lo sapevi?</h3>
+  <p style="font-size: 0.9rem; color: #c5d1e0; margin-bottom: 12px;">
+    Sei tu che autorizzi il Web a profilarti. Guarda il video prima di accettare il prossimo cookie.
+  </p>
+  <video controls style="width: 100%; max-width: 640px; border-radius: 8px; border: 1px solid var(--border);">
+    <source src="video_presentazione.mp4" type="video/mp4">
+    Il tuo browser non supporta la riproduzione dei video.
+  </video>
 </div>
 
 <footer>
   NEW TREE TECHNOLOGY – Sportello Sovranità Digitale<br>
-  Solo orientamento informativo • Nessun dato raccolto<br>
+  Solo orientamento informativo e indirizzamento istituzionale • Nessun dato raccolto<br>
   Versione Beta 2026
 </footer>
-</div>
+</div> 
 
-<button class="float-speak" id="floatSpeak" onclick="toggleSpeak()">🔊</button>
+<button class="float-speak" id="floatSpeak" onclick="toggleSpeak()">🔊</button> 
 
 <script>
-// Endpoint Formspree Unificato
 const FORMSPREE_URL = "https://formspree.io/f/xrpzpqgr";
+const COUNT_NAMESPACE = "sportello-ntt-sonia-2026";
+const COUNT_KEY = "likes";
 
 function inizializzaContatore() {
-  let likesSalvati = localStorage.getItem('ntt_likes_base');
-  if (!likesSalvati) {
-    likesSalvati = 142; // Base visiva d'impatto
-    localStorage.setItem('ntt_likes_base', likesSalvati);
-  }
-  document.getElementById('count-like').innerText = likesSalvati;
-}
+  fetch(`https://api.countapi.xyz/get/${COUNT_NAMESPACE}/${COUNT_KEY}`)
+    .then(res => res.json())
+    .then(data => {
+      if(data && data.value !== undefined) {
+        document.getElementById('count-like').innerText = data.value;
+      } else {
+        document.getElementById('count-like').innerText = "142";
+      }
+    })
+    .catch(() => {
+      document.getElementById('count-like').innerText = "142";
+    });
+} 
 
 function inviaValutazione(tipo) {
   if (localStorage.getItem('ntt_voto_inviato')) {
-    alert("Hai già inviato la tua valutazione. Grazie per il tuo contributo!");
+    alert("Hai già espresso la tua valutazione da questo dispositivo.");
     return;
-  }
+  } 
 
   if (tipo.includes('LIKE')) {
-    let attuali = parseInt(localStorage.getItem('ntt_likes_base') || 142);
-    attuali++;
-    localStorage.setItem('ntt_likes_base', attuali);
-    document.getElementById('count-like').innerText = attuali;
-  }
+    fetch(`https://api.countapi.xyz/hit/${COUNT_NAMESPACE}/${COUNT_KEY}`)
+      .then(res => res.json())
+      .then(data => {
+        if(data && data.value !== undefined) {
+          document.getElementById('count-like').innerText = data.value;
+        }
+      })
+      .catch(() => {});
+  } 
 
   fetch(FORMSPREE_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json", "Accept": "application/json" },
     body: JSON.stringify({
-      oggetto: "Nuova Valutazione Sportello NTT",
+      oggetto: "Report Valutazione Sportello NTT",
       valutazione: tipo,
       data: new Date().toLocaleString("it-IT")
     })
   }).then(() => {
     localStorage.setItem('ntt_voto_inviato', 'true');
-    document.getElementById('feedback-msg').innerHTML = "<b style='color:#4caf50;'>Grazie! La tua valutazione è stata inviata con successo all'autrice.</b>";
+    if (tipo.includes('LIKE')) {
+      document.getElementById('feedback-msg').innerHTML = `<b style='color:var(--green-light);'>Grazie! Valutazione positiva registrata con successo.</b>`;
+    } else {
+      document.getElementById('feedback-msg').innerHTML = `<b style='color:var(--gold-ntt);'>Ci dispiace per non esserti stato utile. Lascia un consiglio qui sotto per aiutarci a crescere.</b>`;
+    }
   }).catch(() => {
-    document.getElementById('feedback-msg').innerHTML = "<b style='color:#f44336;'>Si è verificato un errore, ma grazie comunque per il tentativo!</b>";
+    localStorage.setItem('ntt_voto_inviato', 'true');
+    document.getElementById('feedback-msg').innerHTML = `<b style='color:var(--green-light);'>Valutazione registrata.</b>`;
   });
-}
+} 
 
 function playAvviso() {
   const audio = document.getElementById('avvisoAudio');
   if (audio.paused) { audio.play(); }
   else { audio.pause(); audio.currentTime = 0; }
-}
+} 
 
 function showSection(id, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -382,79 +420,76 @@ function showSection(id, btn) {
   document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   stopSpeak();
-}
+} 
 
 function setQuick(text) {
   document.getElementById('problemText').value = text;
   showSection('home', document.querySelector('.nav-tabs button'));
-}
+} 
 
 function analyze() {
   const rawText = document.getElementById('problemText').value;
   const text = rawText.toLowerCase().trim();
   const box = document.getElementById('responseBox');
-  box.style.display = 'block';
+  box.style.display = 'block'; 
 
   if (!text) {
     box.innerText = 'Scrivi o detta prima una descrizione del problema.';
     return;
-  }
+  } 
 
-  // DIZIONARI AMPLIATI DI PAROLE CHIAVE
-  const kwPolizia = [
-    'foto', 'diffus', 'revenge', 'immag', 'furto', 'progett', 'proprieta', 'proprietá',
-    'industrial', 'idea', 'ideat', 'rubat', 'copiat', 'plag', 'brevett', 'marchio',
-    'ricatto', 'estorsion', 'minacc', 'molest', 'stalk', 'diffam', 'video', 'scatto',
-    'spiat', 'materiale', 'invenzion', 'codice', 'software', 'copyright', 'appropriaz',
-    'big tech', 'piattaforma', 'assorbito'
-  ];
+  const frasiPolizia = [
+    'furto', 'rubato', 'rubata', 'progetto', 'progetti', 'idea', 'idee', 'business plan', 
+    'proprieta intellettuale', 'proprietà industriale', 'copiato', 'plagio', 'brevetto', 
+    'marchio', 'software', 'codice sorgente', 'revenge porn', 'diffusione', 'foto', 
+    'immagini', 'ricatto', 'estorsione', 'minacce', 'stalking', 'diffamazione'
+  ]; 
 
-  const kwCyber = [
-    'telemetr', 'accesso remot', 'malware', 'virus', 'intrusion', 'hacker', 'account',
-    'password', 'profilo', 'entrat', 'bloccato', 'spiat', 'spionaggio', 'trojan',
-    'phishing', 'schermo', 'dispositiv', 'telefono', 'pc', 'computer', 'violat',
-    'rubato l\'accesso', 'hackerat', 'violazion', 'keylogger', 'controllat', 'spia'
-  ];
+  const frasiCyber = [
+    'hackerato', 'hacker', 'account', 'password', 'intrusione', 'virus', 'malware', 
+    'trojan', 'phishing', 'accesso', 'bloccato', 'dispositivo', 'telefono', 'pc', 
+    'computer', 'telemetria', 'spionaggio', 'controllo remoto', 'violato'
+  ]; 
 
-  const kwGdpr = [
-    'cancell', 'art. 17', 'dati', 'oblio', 'elimin', 'rimuov', 'spam', 'telefonat',
-    'telemarket', 'call center', 'pubblicit', 'consenso', 'opposiz', 'garante',
-    'privacy', 'mail non gradit', 'messagg', 'commercial', 'disturb', 'pubblicita'
-  ];
+  const frasiGdpr = [
+    'cancellare', 'cancellazione', 'art. 17', 'dati personali', 'oblio', 'eliminare', 
+    'rimuovere', 'spam', 'telefonate', 'telemarketing', 'call center', 'pubblicità', 
+    'consenso', 'privacy', 'garante', 'email non gradita'
+  ]; 
 
-  const kwLegale = [
-    'avvocat', 'legal', 'denunci', 'risarciment', 'danni', 'patrocinio', 'gratuit',
-    'tribunal', 'giudic', 'causa', 'soldi', 'spese', 'tutel', 'diffida', 'lettera',
-    'risarcire', 'citaz', 'equo', 'dequo', 'consulenz', 'parere'
-  ];
+  const frasiLegale = [
+    'avvocato', 'legale', 'denuncia', 'querela', 'risarcimento', 'danni', 'patrocinio', 
+    'gratuito patrocinio', 'tribunale', 'giudice', 'causa', 'spese legali', 'tutela', 
+    'diffida', 'lettera dell avvocato', 'consulenza'
+  ]; 
 
-  const matches = (list) => list.some(k => text.includes(k));
+  const matches = (list) => list.some(k => text.includes(k)); 
 
-  let risposta = '';
+  let risposta = ''; 
 
-  if (matches(kwPolizia)) {
-    risposta = '🚨 Violazione di proprietà industriale/intellettuale, furto di progetti o diffusione non autorizzata.\n\n1. Conserva subito le prove (screenshot, email, marcatura temporale, URL, codici sorgente).\n2. Vai nella sezione Polizia Postale per preparare la pre-denuncia per reati informatici/appropriazione indebita.\n3. Se riguarda la diffusione impropria di tuoi dati o immagini, valuta anche la segnalazione al Garante Privacy.';
+  if (matches(frasiPolizia)) {
+    risposta = '🚨 Rilevata possibile violazione di proprietà intellettuale, furto di progetti, idee o reato informatico.\n\n1. Conserva subito tutte le prove (screenshot, file di progetto, email, marcature temporali).\n2. Vai nella sezione Polizia Postale per accedere alla pre-denuncia online o agli indirizzi competenti.\n3. Ricorda che NTT ti orienta verso gli organi di polizia e il Garante.';
     showSection('polizia', document.querySelectorAll('.nav-tabs button')[2]);
-  } else if (matches(kwCyber)) {
-    risposta = '🛡️ Probabile attacco informatico, account compromesso o intrusione nel dispositivo.\n\n1. Vai nella sezione Cyber Security e segui i passi di messa in sicurezza immediata.\n2. Disconnetti tutti i dispositivi sospetti e cambia password/credenziali attivando il 2FA.\n3. Se vi è stato un accesso abusivo con furto o danni, sporgi denuncia alla Polizia Postale.';
+  } else if (matches(frasiCyber)) {
+    risposta = '🛡️ Rilevato potenziale attacco informatico o compromissione dell\'account.\n\n1. Vai nella sezione Cyber Security per seguire i passi di messa in sicurezza immediata.\n2. Cambia password, scollega sessioni anomale e attiva la 2FA.\n3. Per incidenti strutturali, consulta i riferimenti dell\'Agenzia per la Cybersicurezza Nazionale (ACN).';
     showSection('cyber', document.querySelectorAll('.nav-tabs button')[3]);
-  } else if (matches(kwGdpr)) {
-    risposta = '📜 Violazione della privacy, trattamento illecito dei dati personali o marketing aggressivo.\n\n1. Vai nella sezione GDPR / Dati.\n2. Scarica e compila il modello pronto per l\'Art. 17 GDPR (Diritto alla cancellazione / Oblio).\n3. Invia la richiesta e, se non ricevi riscontro entro 30 giorni, sporgi reclamo al Garante Privacy.';
+  } else if (matches(frasiGdpr)) {
+    risposta = '📜 Rilevata richiesta legata al GDPR, cancellazione dati o marketing aggressivo.\n\n1. Vai nella sezione GDPR / Dati.\n2. Usa il modello pronto per l\'Art. 17 GDPR per richiedere la cancellazione.\n3. In caso di mancata risposta, utilizza i riferimenti PEC del Garante Privacy.';
     showSection('gdpr', document.querySelectorAll('.nav-tabs button')[1]);
-  } else if (matches(kwLegale)) {
-    risposta = '⚖️ Richiesta di tutela legale o risarcimento danni.\n\n1. Vai nella sezione Aiuto Legale.\n2. Verifica se hai i requisiti per il Gratuito Patrocinio (se il tuo reddito annuo non supera € 13.659,64 dello Stato).\n3. Valuta un primo orientamento legale tramite i canali dedicati.';
+  } else if (matches(frasiLegale)) {
+    risposta = '⚖️ Rilevata richiesta di orientamento legale.\n\n1. Vai nella sezione Aiuto Legale.\n2. Verifica i parametri per il Gratuito Patrocinio statale.\n3. Nota: Al momento la sezione legale è in versione Beta e non è associata ad alcun studio specifico.';
     showSection('legale', document.querySelectorAll('.nav-tabs button')[4]);
   } else {
-    risposta = '🔍 Non sono riuscito ad associare automaticamente il tuo testo a una categoria specifica.\n\nConsulta l’indice in alto oppure descrivi con qualche dettaglio in più il problema (es. "mi hanno rubato l\'idea", "mi chiamano i call center", "non riesco ad entrare nel mio account").';
-  }
+    risposta = '🔍 Non sono riuscito ad associare automaticamente il tuo testo a una categoria specifica.\n\nConsulta l’indice in alto oppure descrivi chiaramente il problema (es. "Dove denunciare il furto di un progetto digitale?", "Voglio cancellare i miei dati al Garante").';
+  } 
 
-  box.innerText = risposta + '\n\n---\nVersione Beta – Solo orientamento informativo.';
-}
+  box.innerText = risposta + '\n\n---\nVersione Beta – Solo orientamento informativo e indirizzamento.';
+} 
 
 function copyTemplate() {
   navigator.clipboard.writeText(document.getElementById('template17').innerText)
     .then(() => alert('Testo copiato!'));
-}
+} 
 
 function downloadTemplate() {
   const blob = new Blob([document.getElementById('template17').innerText], {type: 'text/plain'});
@@ -462,7 +497,7 @@ function downloadTemplate() {
   a.href = URL.createObjectURL(blob);
   a.download = 'Art17_GDPR.txt';
   a.click();
-}
+} 
 
 async function inviaFeedback(event) {
   event.preventDefault();
@@ -470,14 +505,14 @@ async function inviaFeedback(event) {
   const msgBox = document.getElementById('feedbackMsg');
   
   msgBox.style.display = 'block';
-  msgBox.innerText = "Invio in corso...";
+  msgBox.innerText = "Invio in corso..."; 
 
   try {
     const response = await fetch(FORMSPREE_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({ messaggio_feedback: testo })
-    });
+    }); 
 
     if (response.ok) {
       document.getElementById('formFeedback').style.display = 'none';
@@ -488,7 +523,7 @@ async function inviaFeedback(event) {
   } catch (e) {
     msgBox.innerText = "Errore di connessione durante l'invio.";
   }
-}
+} 
 
 let speaking = false, paused = false;
 function toggleSpeak() {
@@ -497,7 +532,7 @@ function toggleSpeak() {
   if (speaking && !paused) { speechSynthesis.pause(); paused = true; btn.textContent = '▶️'; }
   else if (speaking && paused) { speechSynthesis.resume(); paused = false; btn.textContent = '⏸️'; }
   else { startSpeak(); }
-}
+} 
 
 function startSpeak() {
   stopSpeak();
@@ -511,13 +546,13 @@ function startSpeak() {
   speechSynthesis.speak(u);
   speaking = true; paused = false;
   document.getElementById('floatSpeak').textContent = '⏸️';
-}
+} 
 
 function stopSpeak() {
   speechSynthesis.cancel();
   speaking = false; paused = false;
   document.getElementById('floatSpeak').textContent = '🔊';
-}
+} 
 
 let recognition = null, listening = false;
 function toggleMic() {
@@ -539,9 +574,8 @@ function toggleMic() {
     listening = false; document.getElementById('micBtn').classList.remove('listening');
   };
   recognition.start();
-}
+} 
 
-// Inizializza contatore al caricamento
 inizializzaContatore();
 </script>
 </body>
