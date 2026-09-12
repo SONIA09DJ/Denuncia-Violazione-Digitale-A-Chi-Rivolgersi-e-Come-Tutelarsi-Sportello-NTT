@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="hO4BFi-pPEm_cqqg3B-EpfxRj7jz7Ux3w22ksC0kXh4" />
+<meta name="google-site-verification" content="Q2NbcPIkEA7kBHNQx2WuwVRWwEY_xNXtwYub9DH5yyU" />
 <meta name="description" content="Sportello NTT per la Sovranità Digitale e tutela della privacy. Guida all'esercizio dei diritti GDPR, segnalazioni e orientamento informativo verso le autorità competenti.">
 <link rel="canonical" href="https://sonia09dj.github.io/Denuncia-Violazione-Digitale-A-Chi-Rivolgersi-e-Come-Tutelarsi-Sportello-NTT/" />
 
@@ -303,15 +303,15 @@ Firma: ____________
   
   <div style="display: flex; gap: 20px; justify-content: center; align-items: center; margin-bottom: 15px;">
     <button id="btn-like" onclick="inviaValutazione('LIKE 👍')" style="padding: 12px 24px; font-size: 1.1rem; cursor: pointer; border-radius: 8px; border: 1px solid var(--green-ntt); background: #162b1a; color: #fff; transition: 0.3s;">
-      👍 <span id="count-like">...</span>
+      👍 <span id="count-like">0</span>
     </button>
     <button id="btn-dislike" onclick="inviaValutazione('DISLIKE 👎')" style="padding: 12px 24px; font-size: 1.1rem; cursor: pointer; border-radius: 8px; border: 1px solid var(--border); background: #222a33; color: #fff; transition: 0.3s;">
-      👎
+      👎 <span id="count-dislike">0</span>
     </button>
   </div> 
 
   <p id="feedback-msg" style="font-size: 0.85rem; color: #8b9bb0; margin-top: 10px;">
-    <i>*I riscontri sono usati dall'autrice per misurare l'efficacia del progetto Beta in vista della versione finale.</i>
+    <i>*I riscontri sono inviati in modo totalmente anonimo all'autrice per misurare l'efficacia dello sportello.</i>
   </p>
 </div> 
 
@@ -349,39 +349,11 @@ Firma: ____________
 
 <script>
 const FORMSPREE_URL = "https://formspree.io/f/xrpzpqgr";
-const COUNT_NAMESPACE = "sportello-ntt-sonia-2026";
-const COUNT_KEY = "likes";
-
-function inizializzaContatore() {
-  fetch(`https://api.countapi.xyz/get/${COUNT_NAMESPACE}/${COUNT_KEY}`)
-    .then(res => res.json())
-    .then(data => {
-      if(data && data.value !== undefined) {
-        document.getElementById('count-like').innerText = data.value;
-      } else {
-        document.getElementById('count-like').innerText = "142";
-      }
-    })
-    .catch(() => {
-      document.getElementById('count-like').innerText = "142";
-    });
-} 
 
 function inviaValutazione(tipo) {
   if (localStorage.getItem('ntt_voto_inviato')) {
     alert("Hai già espresso la tua valutazione da questo dispositivo.");
     return;
-  } 
-
-  if (tipo.includes('LIKE')) {
-    fetch(`https://api.countapi.xyz/hit/${COUNT_NAMESPACE}/${COUNT_KEY}`)
-      .then(res => res.json())
-      .then(data => {
-        if(data && data.value !== undefined) {
-          document.getElementById('count-like').innerText = data.value;
-        }
-      })
-      .catch(() => {});
   } 
 
   fetch(FORMSPREE_URL, {
@@ -572,8 +544,6 @@ function toggleMic() {
   };
   recognition.start();
 } 
-
-inizializzaContatore();
 </script>
 </body>
 </html>
